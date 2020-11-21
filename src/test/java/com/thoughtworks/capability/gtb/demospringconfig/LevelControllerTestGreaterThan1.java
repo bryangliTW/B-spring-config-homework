@@ -3,10 +3,12 @@ package com.thoughtworks.capability.gtb.demospringconfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(properties = {"levelNumber=2"})
+@SpringBootTest
+@TestPropertySource(locations = "classpath:testing2.properties")
 public class LevelControllerTestGreaterThan1 {
     @Autowired
     private LevelController levelController;
