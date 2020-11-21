@@ -2,12 +2,18 @@ package com.thoughtworks.capability.gtb.demospringconfig;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.List;
+import java.util.Map;
+
 @ConfigurationProperties("mail")
 public class MailConfig {
 
     private String hostname;
     private int port;
     private String from;
+    private List<String> defaultRecipients;
+    private Map<String, String> additionalHeaders;
+    private Credential credentials;
 
     public String getHostname() {
         return hostname;
@@ -33,12 +39,37 @@ public class MailConfig {
         this.from = from;
     }
 
+    public List<String> getDefaultRecipients() {
+        return defaultRecipients;
+    }
+
+    public void setDefaultRecipients(List<String> defaultRecipients) {
+        this.defaultRecipients = defaultRecipients;
+    }
+
+    public Map<String, String> getAdditionalHeaders() {
+        return additionalHeaders;
+    }
+
+    public void setAdditionalHeaders(Map<String, String> additionalHeaders) {
+        this.additionalHeaders = additionalHeaders;
+    }
+
+    public Credential getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(Credential credentials) {
+        this.credentials = credentials;
+    }
+
     @Override
     public String toString() {
         return "MailConfig{" +
                 "hostname='" + hostname + '\'' +
                 ", port=" + port +
                 ", from='" + from + '\'' +
-                '}';
+                '}' + '\n' + additionalHeaders.toString() + '\n' +
+                defaultRecipients.toString() + '\n' + credentials.toString();
     }
 }
